@@ -21,7 +21,7 @@
 #sed -i '/lenovo,newifi-d1|\\/i\        jdcloud,re-sp-01b|\\' target/linux/ramips/mt7621/base-files/etc/board.d/02_network
 
 #sed -i 's/set wireless.radio${devidx}.disabled=1/set wireless.radio${devidx}.disabled=0/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
-echo 'src-git lienol-packages https://github.com/Lienol/openwrt-packages.git' >>feeds.conf.default
-echo 'src-git kenzo https://github.com/kenzok8/openwrt-packages.git' >>feeds.conf.default
+echo 'src-git lienol-packages https://github.com/Lienol/openwrt-packages.git;main' >>feeds.conf.default
+echo 'src-git kenzo https://github.com/kenzok8/openwrt-packages.git;master' >>feeds.conf.default
 echo 'src-git lienol-luci https://github.com/Lienol/luci.git;21.02' >>feeds.conf.default
  
