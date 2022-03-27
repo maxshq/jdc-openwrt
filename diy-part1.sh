@@ -22,6 +22,6 @@
 
 #sed -i 's/set wireless.radio${devidx}.disabled=1/set wireless.radio${devidx}.disabled=0/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
 #echo 'src-git lienol1 https://github.com/Lienol/openwrt-packages.git;main' >>feeds.conf.default
-echo 'src-git kenzo https://github.com/kenzok8/openwrt-packages.git;master' >>feeds.conf.default
+#echo 'src-git kenzo https://github.com/kenzok8/openwrt-packages.git;master' >>feeds.conf.default
 #echo 'src-git lienol2 https://github.com/Lienol/luci.git;21.02' >>feeds.conf.default
  
