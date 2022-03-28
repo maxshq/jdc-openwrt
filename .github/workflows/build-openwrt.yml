@@ -20,8 +20,8 @@ on:
         default: 'false'
 
 env:
-  REPO_URL: https://github.com/coolsnowwolf/openwrt
-  REPO_BRANCH&TAG: lede-17.01
+  REPO_URL: https://github.com/hehe-wang/openwrt
+  REPO_BRANCH&TAG: openwrt-21.02.2
   DTS_FILE: mt7621_jdcloud_re-sp-01b.dts
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: .config
