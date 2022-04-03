@@ -1,144 +1,161 @@
-// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-/dts-v1/;
-
 #include "mt7621.dtsi"
 
 #include <dt-bindings/gpio/gpio.h>
 #include <dt-bindings/input/input.h>
 
 / {
-	compatible = "jdcloud,re-sp-01b", "mediatek,mt7621-soc";
-	model = "JDCloud RE-SP-01B";
+        compatible = "jdcloud,jdc-1", "mediatek,mt7621-soc";
+        model = "JDCloud JDC-1";
 
-	aliases {
-		led-boot = &led_red;
-		led-failsafe = &led_red;
-		led-running = &led_green;
-		led-upgrade = &led_blue;
-		label-mac-device = &ethernet;
-	};
+        aliases {
+                led-boot = &led_blue;
+                led-failsafe = &led_blue;
+                led-running = &led_blue;
+                led-upgrade = &led_blue;
+        };
+        
+        chosen {
+                bootargs = "console=ttyS0,115200";
+        };
 
-	chosen {
-		bootargs = "console=ttyS0,115200";
-	};
+        leds {
+                compatible = "gpio-leds";
 
-	keys {
-		compatible = "gpio-keys";
+                red {
+                        label = "jdcloud:red:sys";
+                        gpios = <&gpio 6 GPIO_ACTIVE_HIGH>;
+                };
 
-		reset {
-			label = "reset";
-			gpios = <&gpio 18 GPIO_ACTIVE_LOW>;
-			linux,code = <KEY_RESTART>;
-		};
-	};
+                green {
+                        label = "jdcloud:green:sys";
+                        gpios = <&gpio 8 GPIO_ACTIVE_LOW>;
+                };
 
-	leds {
-		compatible = "gpio-leds";
+                blue {
+                        label = "jdcloud:blue:sys";
+                        gpios = <&gpio 12 GPIO_ACTIVE_LOW>;
+                };
+        };
 
-		led_red: red {
-			label = "jdcloud:red:sys";
-			gpios = <&gpio 6 GPIO_ACTIVE_LOW>;
-			panic-indicator;
-		};
+        keys {
+                compatible = "gpio-keys";
 
-		led_green: green {
-			label = "jdcloud:green:sys";
-			gpios = <&gpio 8 GPIO_ACTIVE_LOW>;
-		};
-
-		led_blue: blue {
-			label = "jdcloud:blue:sys";
-			gpios = <&gpio 12 GPIO_ACTIVE_LOW>;
-		};
-	};
-};
-
-&sdhci {
-	status = "okay";
+                reset {
+                        label = "reset";
+                        gpios = <&gpio 18 GPIO_ACTIVE_LOW>;
+                        linux,code = <KEY_RESTART>;
+                };
+        };
 };
 
 &spi0 {
-	status = "okay";
+        status = "okay";
 
-	flash@0 {
-		compatible = "jedec,spi-nor";
-		reg = <0>;
-		spi-max-frequency = <50000000>;
+        flash@0 {
+                compatible = "jedec,spi-nor";
+                reg = <0>;
+                spi-max-frequency = <0x2faf080>;
 
-		partitions {
-			compatible = "fixed-partitions";
-			#address-cells = <1>;
-			#size-cells = <1>;
+                partitions {
+                        compatible = "fixed-partitions";
+                        #address-cells = <1>;
+                        #size-cells = <1>;
 
-			partition@0 {
-				label = "u-boot";
-				reg = <0x0 0x30000>;
-				read-only;
-			};
+                        partition@0 {
+                                label = "u-boot";
+                                reg = <0x0 0x30000>;
+                                read-only;
+                        };
 
-			config: partition@30000 {
-				label = "config";
-				reg = <0x30000 0x10000>;
-				read-only;
-			};
+                        partition@30000 {
+                                label = "config";
+                                reg = <0x30000 0x10000>;
+                                read-only;
+                        };
 
-			factory: partition@40000 {
-				label = "factory";
-				reg = <0x40000 0x10000>;
-				read-only;
-			};
+                        factory: partition@40000 {
+                                label = "factory";
+                                reg = <0x40000 0x10000>;
+                                read-only;
+                        };
 
-			partition@50000 {
-				compatible = "denx,uimage";
-				label = "firmware";
-				reg = <0x50000 0x1ab0000>;
-			};
-			
-			partition@1b00000 {
-				label = "mini";
-				reg = <0x1b00000 0x400000>;
-				read-only;
-			};
+                        partition@50000 {
+                                compatible = "denx,uimage";
+                                label = "firmware";
+                                reg = <0x50000 0x1ab0000>;
+                        };
 
-			partition@1f00000 {
-				label = "oem";
-				reg = <0x1f00000 0x100000>;
-				read-only;
-			};
-		};
-	};
-};
+                        partition@1b00000 {
+                                label = "mini";
+                                reg = <0x1b00000 0x400000>;
+                                read-only;
+                        };
 
-&ethernet {
-	mtd-mac-address-ascii = <&config 0x4429>;
+                        partition@1f00000{
+                                label = "oem";
+                                reg = <0x1f00000 0x100000>;
+                                read-only;
+                        };
+                };
+        };
 };
 
 &pcie {
-	status = "okay";
+        status = "okay";
 };
 
 &pcie0 {
-	wifi@0,0 {
-		reg = <0x0000 0 0 0 0>;
-		mtd-mac-address-ascii = <&config 0x4429>;
-		mediatek,mtd-eeprom = <&factory 0x0>;
-	};
+        mt76@0,0 {
+                reg = <0x0000 0 0 0 0>;
+                mtd-mac-address-ascii = <0x0d 0x4429>;
+                mediatek,mtd-eeprom = <&factory 0x0000>;
+                ieee80211-freq-limit = <2400000 2500000>;
+        };
 };
 
 &pcie1 {
-	wifi@0,0 {
-		reg = <0x0000 0 0 0 0>;
-		mtd-mac-address-ascii = <&config 0x4429>;
-		mtd-mac-address-increment = <0x80>;
-		mtd-mac-address-increment-byte = <3>;
-		mediatek,mtd-eeprom = <&factory 0x8000>;
-		ieee80211-freq-limit = <5000000 6000000>;
-	};
+        mt76@0,0 {
+                reg = <0x0000 0 0 0 0>;
+                mtd-mac-address-ascii = <0x0d 0x4429>;
+                mtd-mac-address-increment-byte = <0x03>;
+                mtd-mac-address-increment = <0x80>;
+                mediatek,mtd-eeprom = <&factory 0x8000>;
+                ieee80211-freq-limit = <5000000 6000000>;
+        };
+};
+
+&pcie2 {
+        status = "okay";
+};
+
+&gmac0 {
+        mtd-mac-address = <&config 0x4429>;
+};
+
+&switch0 {
+        ports {
+                port@1 {
+                        status = "okay";
+                        label = "lan2";
+                };
+
+                port@2 {
+                        status = "okay";
+                        label = "lan1";
+                };
+
+                port@4 {
+                        status = "okay";
+                        label = "wan";
+                        mtd-mac-address = <&config 0x4429>;
+                        mtd-mac-address-increment = <1>;
+                };
+        };
 };
 
 &state_default {
-	gpio {
-		ralink,group = "uart2", "uart3", "wdt";
-		ralink,function = "gpio";
-	};
+        gpio {
+                groups = “jtag”, “uart2”, “uart3”;
+                function = "gpio";
+        };
 };
