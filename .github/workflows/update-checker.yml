@@ -13,7 +13,7 @@ name: Update Checker
 
 env:
   REPO_URL: https://github.com/openwrt/openwrt
-  REPO_TAG: v19.07.9
+  REPO_TAG: v21.02.2
 
 on:
   workflow_dispatch:
