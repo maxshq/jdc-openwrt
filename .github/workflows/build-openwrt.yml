@@ -21,7 +21,7 @@ on:
 
 env:
   REPO_URL: https://github.com/openwrt/openwrt
-  REPO_TAG: v19.07.9
+  REPO_TAG: v21.02.2
   DTS_FILE: mt7621_jdcloud_re-sp-01b.dts
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: .config
