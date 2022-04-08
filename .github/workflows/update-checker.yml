@@ -12,8 +12,8 @@
 name: Update Checker
 
 env:
-  REPO_URL: https://github.com/openwrt/openwrt
-  REPO_TAG: v21.02.2
+  REPO_URL: https://github.com/Lienol/openwrt
+  REPO_TAG: 21.02
 
 on:
   workflow_dispatch:
