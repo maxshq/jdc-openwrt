@@ -21,7 +21,7 @@ on:
 
 env:
   REPO_URL: https://github.com/Lienol/openwrt
-  REPO_TAG: 21.02
+  REPO_TAG: 22.03
   DTS_FILE: mt7621_jdcloud_re-sp-01b.dts
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: .config
