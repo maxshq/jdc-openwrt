@@ -25,5 +25,5 @@
 #echo 'src-git kenzo https://github.com/kenzok8/openwrt-packages.git;master' >>feeds.conf.default
 #echo 'src-git lienol2 https://github.com/Lienol/luci.git;21.02' >>feeds.conf.default
 
-#git clone -b ramips --single-branch https://github.com/AmadeusGhost/lede
-git clone https://github.com/padavanonly/immortalwrt/
+git clone -b ramips --single-branch https://github.com/AmadeusGhost/lede
+#git clone https://github.com/padavanonly/immortalwrt/
