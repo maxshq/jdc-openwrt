@@ -20,10 +20,11 @@ on:
         default: 'false'
 
 env:
-  REPO_URL: https://github.com/openwrt/openwrt
- # REPO_URL: https://github.com/Lienol/openwrt
-  REPO_TAG: v22.03.0
+ # REPO_URL: https://github.com/openwrt/openwrt
+  REPO_URL: https://github.com/x-wrt/x-wrt
+ # REPO_TAG: v22.03.0
   # REPO_TAG: 22.03
+  REPO_TAG: master
   DTS_FILE: mt7621_jdcloud_re-sp-01b.dts
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: .config
