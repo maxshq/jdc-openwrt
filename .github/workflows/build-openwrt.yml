@@ -20,8 +20,8 @@ on:
         default: 'false'
 
 env:
- # REPO_URL: https://github.com/openwrt/openwrt
-  REPO_URL: https://github.com/padavanonly/immortalwrt
+  REPO_URL: https://github.com/openwrt/openwrt
+  #REPO_URL: https://github.com/padavanonly/immortalwrt
  # REPO_TAG: v22.03.0
   # REPO_TAG: 22.03
   REPO_TAG: master
