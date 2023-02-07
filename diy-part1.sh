@@ -27,4 +27,4 @@
 
 #git clone -b ramips --single-branch https://github.com/AmadeusGhost/lede
 #git clone https://github.com/padavanonly/immortalwrt/
-git clone https://github.com/padavanonly/immortalwrt/tree/master/target/linux/ramips
+#git clone https://github.com/padavanonly/immortalwrt/tree/master/target/linux/ramips
