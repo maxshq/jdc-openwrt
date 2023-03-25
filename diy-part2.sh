@@ -22,7 +22,7 @@ sed -i '/linksys,e5600|\\/i\        jdcloud,re-sp-01b)\n                local in
 #sed -i 's/set wireless.radio${devidx}.disabled=1/set wireless.radio${devidx}.disabled=0/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
 # load dts
 # echo '载入 mt7621_jdcloud_re-sp-01b.dts'
-curl --retry 3 -s --globoff "https://gist.githubusercontent.com/1-1-2/335dbc8e138f39fb8fe6243d424fe476/raw/[lean's%20lede]mt7621_jdcloud_re-sp-01b.dts" -o target/linux/ramips/dts/mt7621_jdcloud_re-sp-01b.dts
+#curl --retry 3 -s --globoff "https://gist.githubusercontent.com/1-1-2/335dbc8e138f39fb8fe6243d424fe476/raw/[lean's%20lede]mt7621_jdcloud_re-sp-01b.dts" -o target/linux/ramips/dts/mt7621_jdcloud_re-sp-01b.dts
 # ls -l target/linux/ramips/dts/mt7621_jdcloud_re-sp-01b.dts
 
 # fix2 + fix4.2
